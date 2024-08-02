@@ -1,0 +1,786 @@
+{
+	"info": {
+		"_postman_id": "951e411b-08aa-48d3-b859-cb297e6ee3e5",
+		"name": "ReqRes API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36489211"
+	},
+	"item": [
+		{
+			"name": "GET Single User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct data\", function () {",
+							"    const expectedResponse = {",
+							"        data: {",
+							"            id: 2,",
+							"            email: \"janet.weaver@reqres.in\",",
+							"            first_name: \"Janet\",",
+							"            last_name: \"Weaver\",",
+							"            avatar: \"https://reqres.in/img/faces/2-image.jpg\"",
+							"        },",
+							"        support: {",
+							"            url: \"https://reqres.in/#support-heading\",",
+							"            text: \"To keep ReqRes free, contributions towards server costs are appreciated!\"",
+							"        }",
+							"    };",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.eql(expectedResponse);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/2",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET List Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct data\", function () {",
+							"    const expectedResponse = {",
+							"        page: 2,",
+							"        per_page: 6,",
+							"        total: 12,",
+							"        total_pages: 2,",
+							"        data: [",
+							"            { id: 7, email: \"michael.lawson@reqres.in\", first_name: \"Michael\", last_name: \"Lawson\", avatar: \"https://reqres.in/img/faces/7-image.jpg\" },",
+							"            { id: 8, email: \"lindsay.ferguson@reqres.in\", first_name: \"Lindsay\", last_name: \"Ferguson\", avatar: \"https://reqres.in/img/faces/8-image.jpg\" },",
+							"            { id: 9, email: \"tobias.funke@reqres.in\", first_name: \"Tobias\", last_name: \"Funke\", avatar: \"https://reqres.in/img/faces/9-image.jpg\" },",
+							"            { id: 10, email: \"byron.fields@reqres.in\", first_name: \"Byron\", last_name: \"Fields\", avatar: \"https://reqres.in/img/faces/10-image.jpg\" },",
+							"            { id: 11, email: \"george.edwards@reqres.in\", first_name: \"George\", last_name: \"Edwards\", avatar: \"https://reqres.in/img/faces/11-image.jpg\" },",
+							"            { id: 12, email: \"rachel.howell@reqres.in\", first_name: \"Rachel\", last_name: \"Howell\", avatar: \"https://reqres.in/img/faces/12-image.jpg\" }",
+							"        ],",
+							"        support: {",
+							"            url: \"https://reqres.in/#support-heading\",",
+							"            text: \"To keep ReqRes free, contributions towards server costs are appreciated!\"",
+							"        }",
+							"    };",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.eql(expectedResponse);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users?page=2",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Single Resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct data\", function () {",
+							"    const expectedResponse = {",
+							"        data: {",
+							"            id: 2,",
+							"            name: \"fuchsia rose\",",
+							"            year: 2001,",
+							"            color: \"#C74375\",",
+							"            pantone_value: \"17-2031\"",
+							"        },",
+							"        support: {",
+							"            url: \"https://reqres.in/#support-heading\",",
+							"            text: \"To keep ReqRes free, contributions towards server costs are appreciated!\"",
+							"        }",
+							"    };",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.eql(expectedResponse);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/unknown/2",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"unknown",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET List Resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct data\", function () {",
+							"    const expectedResponse = {",
+							"        page: 1,",
+							"        per_page: 6,",
+							"        total: 12,",
+							"        total_pages: 2,",
+							"        data: [",
+							"            { id: 1, name: \"cerulean\", year: 2000, color: \"#98B2D1\", pantone_value: \"15-4020\" },",
+							"            { id: 2, name: \"fuchsia rose\", year: 2001, color: \"#C74375\", pantone_value: \"17-2031\" },",
+							"            { id: 3, name: \"true red\", year: 2002, color: \"#BF1932\", pantone_value: \"19-1664\" },",
+							"            { id: 4, name: \"aqua sky\", year: 2003, color: \"#7BC4C4\", pantone_value: \"14-4811\" },",
+							"            { id: 5, name: \"tigerlily\", year: 2004, color: \"#E2583E\", pantone_value: \"17-1456\" },",
+							"            { id: 6, name: \"blue turquoise\", year: 2005, color: \"#53B0AE\", pantone_value: \"15-5217\" }",
+							"        ],",
+							"        support: {",
+							"            url: \"https://reqres.in/#support-heading\",",
+							"            text: \"To keep ReqRes free, contributions towards server costs are appreciated!\"",
+							"        }",
+							"    };",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.eql(expectedResponse);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/unknown",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"unknown"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Delayed Response",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct data\", function () {",
+							"    const expectedResponse = {",
+							"        page: 1,",
+							"        per_page: 6,",
+							"        total: 12,",
+							"        total_pages: 2,",
+							"        data: [",
+							"            { id: 1, email: \"george.bluth@reqres.in\", first_name: \"George\", last_name: \"Bluth\", avatar: \"https://reqres.in/img/faces/1-image.jpg\" },",
+							"            { id: 2, email: \"janet.weaver@reqres.in\", first_name: \"Janet\", last_name: \"Weaver\", avatar: \"https://reqres.in/img/faces/2-image.jpg\" },",
+							"            { id: 3, email: \"emma.wong@reqres.in\", first_name: \"Emma\", last_name: \"Wong\", avatar: \"https://reqres.in/img/faces/3-image.jpg\" },",
+							"            { id: 4, email: \"eve.holt@reqres.in\", first_name: \"Eve\", last_name: \"Holt\", avatar: \"https://reqres.in/img/faces/4-image.jpg\" },",
+							"            { id: 5, email: \"charles.morris@reqres.in\", first_name: \"Charles\", last_name: \"Morris\", avatar: \"https://reqres.in/img/faces/5-image.jpg\" },",
+							"            { id: 6, email: \"tracey.ramos@reqres.in\", first_name: \"Tracey\", last_name: \"Ramos\", avatar: \"https://reqres.in/img/faces/6-image.jpg\" }",
+							"        ],",
+							"        support: {",
+							"            url: \"https://reqres.in/#support-heading\",",
+							"            text: \"To keep ReqRes free, contributions towards server costs are appreciated!\"",
+							"        }",
+							"    };",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.eql(expectedResponse);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users?delay=3",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "delay",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Single User Not Found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/23",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Single Resource Not Found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/unknown/23",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"unknown",
+						"23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Register User Successful",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct data\", function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.have.property(\"id\");",
+							"    pm.expect(responseData).to.have.property(\"token\");",
+							"    console.log(\"ID:\", responseData.id);",
+							"    console.log(\"Token:\", responseData.token);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"eve.holt@reqres.in\",\n    \"password\": \"pistol\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/register",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Register Unsuccessful",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct data\", function () {",
+							"    const expectedResponse = {",
+							"        error: \"Missing password\"",
+							"    };",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.eql(expectedResponse);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"sydney@fife\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/register",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Login Successful",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct data\", function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.have.property(\"token\");",
+							"    console.log(\"Token:\", responseData.token);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"eve.holt@reqres.in\",\n    \"password\": \"cityslicka\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Login Unsuccessful",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct data\", function () {",
+							"    const expectedResponse = {",
+							"        error: \"Missing password\"",
+							"    };",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.eql(expectedResponse);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"peter@klaven\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct data\", function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.have.property(\"name\", \"morpheus\");",
+							"    pm.expect(responseData).to.have.property(\"job\", \"leader\");",
+							"    pm.expect(responseData).to.have.property(\"id\");",
+							"    pm.expect(responseData).to.have.property(\"createdAt\");",
+							"    console.log(\"ID:\", responseData.id);",
+							"    console.log(\"Created At:\", responseData.createdAt);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"morpheus\",\n    \"job\": \"leader\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct data\", function () {",
+							"    const expectedData = {",
+							"        name: \"morpheus\",",
+							"        job: \"zion resident\"",
+							"    };",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.have.property(\"name\", expectedData.name);",
+							"    pm.expect(responseData).to.have.property(\"job\", expectedData.job);",
+							"    pm.expect(responseData).to.have.property(\"updatedAt\");",
+							"    console.log(\"Updated At:\", responseData.updatedAt);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"morpheus\",\n    \"job\": \"zion resident\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/2",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct data\", function () {",
+							"    const expectedData = {",
+							"        name: \"morpheus\",",
+							"        job: \"zion resident\"",
+							"    };",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.have.property(\"name\", expectedData.name);",
+							"    pm.expect(responseData).to.have.property(\"job\", expectedData.job);",
+							"    pm.expect(responseData).to.have.property(\"updatedAt\");",
+							"    console.log(\"Updated At:\", responseData.updatedAt);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"morpheus\",\n    \"job\": \"zion resident\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/2",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/2",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://reqres.in/api",
+			"type": "string"
+		}
+	]
+}
